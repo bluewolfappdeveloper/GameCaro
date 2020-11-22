@@ -27,7 +27,7 @@ void setTitle(int colorCode) {
 }
 
 void setMenuSelect(int a) {
-	if (a > 5 || a < 1) return;
+	if (a > 5 || a < 0) return;
 
 	int col = getMaxScreenX / 2, row = 15;
 
@@ -37,7 +37,13 @@ void setMenuSelect(int a) {
 		TextColor(default_ColorCode);
 		for (int j = 0; j <= 20;j++) cout << " ";
 	}
-		
+	
+
+	if (a == 0) {
+		return;
+	}
+
+
 	gotoXY(col, ++row);
 	if (a == 1) {
 		TextColor(31);
@@ -134,7 +140,9 @@ void mainGame(string player1, string player2) {
 							break;
 						case 3:
 							//Help
-
+							setMenuSelect(0);  ShowConsoleCursor(true);
+							helpGame();
+							setMenuSelect(3);
 							break;
 						case 4:
 							//About

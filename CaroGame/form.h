@@ -7,6 +7,7 @@ using namespace std;
 void mainLoginGame();
 void mainGame(string player1, string player2);
 void mainPlayGame(string path);
+void helpGame();
 
 
 

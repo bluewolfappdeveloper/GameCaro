@@ -32,7 +32,7 @@ void mainPlayGame(string path) {
 			if (_kbhit()) {
 				int key = _getch();
 
-				if (toupper(key) == 'W' || toupper(key) == 'S' || toupper(key) == 'A' || toupper(key) == 'D' || key == 32) {
+				if (toupper(key) == 'W' || toupper(key) == 'S' || toupper(key) == 'A' || toupper(key) == 'D' || key == 13 || key == 32) {
 					if (toupper(key) == 'W') //UP
 						moveCursorPosition(getCursorY(), getCursorX(), UP);
 					else if (toupper(key) == 'S') //DOWN
