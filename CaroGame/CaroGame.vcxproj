@@ -168,7 +168,7 @@
     <ClInclude Include="caroBoardProcess.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="Help.h" />
-    <ClInclude Include="infoStage.h" />
+    <ClInclude Include="infoState.h" />
     <ClInclude Include="loginMain.h" />
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="playGame.h" />

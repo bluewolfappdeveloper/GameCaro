@@ -113,7 +113,7 @@
     <ClInclude Include="about.h">
       <Filter>Header Files\form\about</Filter>
     </ClInclude>
-    <ClInclude Include="infoStage.h">
+    <ClInclude Include="infoState.h">
       <Filter>Header Files\form\playGame\drawInfoState</Filter>
     </ClInclude>
   </ItemGroup>

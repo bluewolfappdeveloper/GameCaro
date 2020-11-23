@@ -4,7 +4,7 @@
 #include "console.h"
 #include "table.h"
 #include "caroBoardProcess.h"
-#include "infoStage.h"
+#include "infoState.h"
 
 using namespace std;
 
