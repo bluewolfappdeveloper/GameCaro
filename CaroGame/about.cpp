@@ -66,15 +66,15 @@ void aboutGame() {
 		cout << "\tGV huong dan: Truong Toan Thinh" << endl;
 		gotoXY(46, 11);
 		cout << "\t1. Vo Nhat Tan - 20127323" << endl;
-		gotoXY(46, 13);
+		gotoXY(46, 14);
 		cout << "\t2. Nguyen Phat Thinh - 20127334" << endl;
-		gotoXY(46, 15);
-		cout << "\t3. Nguyen Sanh Tai - 20127069" << endl;
 		gotoXY(46, 17);
+		cout << "\t3. Nguyen Sanh Tai - 20127069" << endl;
+		gotoXY(46, 20);
 		cout << "\t4. Ngo Duc Bao - 20127447" << endl;
-		gotoXY(46, 19);
+		gotoXY(46, 23);
 		cout << "\t5. Dinh Anh Quoc - 20127302" << endl;
-		gotoXY(46, 21);
+		gotoXY(46, 26);
 	}
 
 }
