@@ -156,6 +156,7 @@
     <ClCompile Include="CaroGame.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Help.cpp" />
+    <ClCompile Include="infoState.cpp" />
     <ClCompile Include="LoginGame.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="playGame.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="caroBoardProcess.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="Help.h" />
+    <ClInclude Include="infoStage.h" />
     <ClInclude Include="loginMain.h" />
     <ClInclude Include="mainGame.h" />
     <ClInclude Include="playGame.h" />

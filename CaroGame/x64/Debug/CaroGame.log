@@ -1,3 +1,2 @@
-﻿  mainGame.cpp
-E:\Lp trình\GameCaro\CaroGame\mainGame.cpp(105,55): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  CaroGame.vcxproj -> E:\Lp trình\GameCaro\x64\Debug\CaroGame.exe
+﻿  playGame.cpp
+  CaroGame.vcxproj -> D:\Hello\GameCaro\x64\Debug\CaroGame.exe

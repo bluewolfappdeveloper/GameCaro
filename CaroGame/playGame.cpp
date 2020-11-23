@@ -4,6 +4,7 @@
 #include "console.h"
 #include "table.h"
 #include "caroBoardProcess.h"
+#include "infoStage.h"
 
 using namespace std;
 
@@ -17,15 +18,13 @@ void mainPlayGame(string path) {
 
 	drawTable();
 
-
-
+	mainInfoState(isPlayer1, false);
 	gotoXY(0, 0);
+	
+
 	while (!isExit) {
 		if (isWinning) {
-			// Doing when winning
-			gotoXY(91, 2);
-			if (isPlayer1) cout << "Nguoi 1 danh chien thang";
-			else cout << "Nguoi 2 danh chien thang";
+			mainInfoState(isPlayer1, true);
 		}
 		else {
 			moveCursorPosition(getCursorY(), getCursorX());
@@ -58,9 +57,14 @@ void mainPlayGame(string path) {
 						}
 
 						if (!isWinning && isChecked) {
-
-
 							isPlayer1 = !isPlayer1;
+
+							int x = getCursorX();
+							int y = getCursorY();
+
+							mainInfoState(isPlayer1, false);
+							
+							gotoXY(x,y);
 						}
 					}
 

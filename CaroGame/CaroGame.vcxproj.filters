@@ -46,6 +46,9 @@
     <Filter Include="Header Files\form\about">
       <UniqueIdentifier>{61c06e6f-e061-4dac-9e11-bfba2fefb27b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\form\playGame\drawInfoState">
+      <UniqueIdentifier>{3c4b82d9-5324-4005-97b8-1042e29f095a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CaroGame.cpp">
@@ -78,6 +81,9 @@
     <ClCompile Include="about.cpp">
       <Filter>Header Files\form\about</Filter>
     </ClCompile>
+    <ClCompile Include="infoState.cpp">
+      <Filter>Header Files\form\playGame\drawInfoState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console.h">
@@ -106,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="about.h">
       <Filter>Header Files\form\about</Filter>
+    </ClInclude>
+    <ClInclude Include="infoStage.h">
+      <Filter>Header Files\form\playGame\drawInfoState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

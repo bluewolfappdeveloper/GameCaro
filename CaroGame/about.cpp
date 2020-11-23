@@ -75,8 +75,6 @@ void aboutGame() {
 		gotoXY(46, 19);
 		cout << "\t5. Dinh Anh Quoc - 20127302" << endl;
 		gotoXY(46, 21);
-		cout << "\t6. Nguyen Dang Minh - 20127562" << endl;
-		gotoXY(46, 28);
 	}
 
 }
