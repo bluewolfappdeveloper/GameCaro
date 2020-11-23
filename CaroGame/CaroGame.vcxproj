@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="about.cpp" />
     <ClCompile Include="caroBoardProcess.cpp" />
     <ClCompile Include="CaroGame.cpp" />
     <ClCompile Include="console.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="form.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="about.h" />
     <ClInclude Include="caroBoardProcess.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="Help.h" />

@@ -8,7 +8,7 @@ void mainLoginGame();
 void mainGame(string player1, string player2);
 void mainPlayGame(string path);
 void helpGame();
-
+void aboutGame();
 
 
 #endif // !Form_H_

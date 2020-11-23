@@ -2,3 +2,4 @@
 #include "mainGame.h"
 #include "loginMain.h"
 #include "Help.h"
+#include "about.h"

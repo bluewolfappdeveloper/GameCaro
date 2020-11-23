@@ -22,6 +22,8 @@ void helpGame() {
 	}
 	gotoXY(40, 25);
 	cout << (char)192;
+	gotoXY(40, 6);
+	cout << (char)195;
 	for (int i = 41; i <= 88; i++) {
 		gotoXY(i, 6);
 		cout << (char)196;
@@ -37,6 +39,10 @@ void helpGame() {
 	gotoXY(89, 25);
 	cout << (char)217;
 	Sleep(25);
+	gotoXY(89, 6);
+	cout << (char)180;
+	gotoXY(89, 6);
+	cout << (char)217;
 	for (int i = 4; i <= 24; i++) {
 		gotoXY(89, i);
 		cout << (char)179;

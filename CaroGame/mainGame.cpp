@@ -146,7 +146,9 @@ void mainGame(string player1, string player2) {
 							break;
 						case 4:
 							//About
-
+							setMenuSelect(0);  ShowConsoleCursor(true);
+							aboutGame();
+							setMenuSelect(4);
 							break;
 						case 5:
 							//Exit

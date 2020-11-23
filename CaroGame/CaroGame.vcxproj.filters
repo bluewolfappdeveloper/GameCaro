@@ -43,6 +43,9 @@
     <Filter Include="Header Files\form\help">
       <UniqueIdentifier>{a8f5485f-93df-4297-a6a0-41014e4e5fef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\form\about">
+      <UniqueIdentifier>{61c06e6f-e061-4dac-9e11-bfba2fefb27b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CaroGame.cpp">
@@ -72,6 +75,9 @@
     <ClCompile Include="Help.cpp">
       <Filter>Header Files\form\help</Filter>
     </ClCompile>
+    <ClCompile Include="about.cpp">
+      <Filter>Header Files\form\about</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="console.h">
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Help.h">
       <Filter>Header Files\form\help</Filter>
+    </ClInclude>
+    <ClInclude Include="about.h">
+      <Filter>Header Files\form\about</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
