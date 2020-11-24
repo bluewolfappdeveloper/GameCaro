@@ -1,0 +1,3 @@
+﻿  caroBoardProcess.cpp
+d:\carogame\carogame\caroboardprocess.cpp(47): warning C4101: 'j2': unreferenced local variable
+  CaroGame.vcxproj -> D:\CaroGame\Debug\CaroGame.exe
