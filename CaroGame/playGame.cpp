@@ -19,12 +19,13 @@ void mainPlayGame(string path) {
 	drawTable();
 
 	mainInfoState(isPlayer1, false);
+	drawInfoTable(default_ColorCode);
 	gotoXY(0, 0);
 	
 
 	while (!isExit) {
 		if (isWinning) {
-			mainInfoState(isPlayer1, true);
+			break;
 		}
 		else {
 			moveCursorPosition(getCursorY(), getCursorX());
@@ -87,6 +88,19 @@ void mainPlayGame(string path) {
 			}
 		}
 	}
+
+	if (isWinning) {
+		mainInfoState(isPlayer1, isWinning);
+		while (true) {
+			// menu lua chon
+		}
+	}
+	else {
+		while (true) {
+			//menu lua chon
+		}
+	}
+	
 }
 
 	

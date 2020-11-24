@@ -130,7 +130,8 @@ void moveCursorPosition(int row, int column, Direction direct) {
 	switch (direct) {
 		case UP:
 			if (row - 2 < 0) cout << char(7);
-				else row -= 2;
+			else row -= 2;
+			
 			break;
 		case DOWN:
 			if (row + 2 > 28) cout << char(7);
