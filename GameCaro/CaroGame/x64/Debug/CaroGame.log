@@ -1,0 +1,4 @@
+﻿  table.cpp
+C:\Users\Admin\Desktop\GameCaro\CaroGame\table.cpp(10,48): warning C4091: 'static ': ignored on left of 'Direction' when no variable is declared
+C:\Users\Admin\Desktop\GameCaro\CaroGame\table.cpp(33,13): warning C4101: 'h': unreferenced local variable
+  CaroGame.vcxproj -> C:\Users\Admin\Desktop\GameCaro\x64\Debug\CaroGame.exe
