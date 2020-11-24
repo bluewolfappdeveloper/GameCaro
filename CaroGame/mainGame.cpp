@@ -8,6 +8,15 @@
 
 using namespace std;
 
+void C(int t)
+{
+	for (int i = 1; i <= t; i++) cout << (char)219;
+}
+void C1(int t)
+{
+	for (int i = 1; i <= t; i++) cout << " ";
+}
+
 void setTitle(int colorCode) {
 
 	//TextColor(colorCode);
