@@ -7,12 +7,11 @@ using namespace std;
 enum Direction { UP, DOWN, LEFT, RIGHT };
 
 void initTable();
-void loadTable(string path);
 void drawTable();
 
 bool checkInTableByPos(int row, int column, char k);
 void checkInTableByIndex(int row, int column, char k, int colorCode);
-bool insertDataFromMatrix(int row, int column, int value);
+int insertDataFromMatrix(int row, int column, int value);
 
 void moveCursorPosition(int row, int column);
 void moveCursorPosition(int row, int column, Direction direct);

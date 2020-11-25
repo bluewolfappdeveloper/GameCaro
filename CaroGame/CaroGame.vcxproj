@@ -175,9 +175,6 @@
     <ClInclude Include="table.h" />
     <ClInclude Include="form.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Debug\userGame.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

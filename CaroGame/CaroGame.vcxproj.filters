@@ -117,9 +117,4 @@
       <Filter>Header Files\form\playGame\drawInfoState</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Debug\userGame.txt">
-      <Filter>Header Files\data</Filter>
-    </Text>
-  </ItemGroup>
 </Project>

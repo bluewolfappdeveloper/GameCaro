@@ -2,8 +2,10 @@
 #include <string>
 #include <math.h>
 #include <conio.h>
+#include <direct.h> // _getcwd
 
 #include "console.h"
+#include "loginMain.h"
 #include "form.h"
 
 using namespace std;
@@ -51,7 +53,13 @@ void setTitle(int colorCode) {
 
 }
 
-void setMenuSelect(int a) {
+inline bool existsFile(const std::string& name) {
+	struct stat buffer;
+	return (stat(name.c_str(), &buffer) == 0);
+}
+
+
+void setMenuSelect(int a, bool isFile = true) {
 	if (a > 5 || a < 0) return;
 
 	int col = getMaxScreenX / 2, row = 15;
@@ -81,11 +89,15 @@ void setMenuSelect(int a) {
 
 	gotoXY(col, ++row);
 	if (a == 2) {
-		TextColor(31);
+		if (isFile) TextColor(31); else TextColor(248);
 		cout << ">> " << "LOAD GAME" << " <<";
 		TextColor(default_ColorCode);
 	}
-	else cout << "LOAD GAME";
+	else {
+		if (!isFile)  TextColor(248);
+		cout << "LOAD GAME";
+		TextColor(default_ColorCode);
+	}
 
 	row++;
 
@@ -119,13 +131,7 @@ void setMenuSelect(int a) {
 
 }
 
-void mainGame(string player1, string player2) {
-	int selected = 1;
-	
-	
-	setMenuSelect(selected);
-
-
+void showMainNamePlayer(string player1, string player2) {
 	if (!player1.empty() && !player2.empty()) {
 		int col = (getMaxScreenX / 2) - player1.length() + 4;// -((player1.length() + player2.length() + 4)) / 2 + 5;
 
@@ -133,26 +139,41 @@ void mainGame(string player1, string player2) {
 		cout << player1 << " vs " << player2 << endl;
 		TextColor(default_ColorCode);
 	}
-		//calculator center
+}
+
+void mainGame(string player1, string player2) {
+	int selected = 1;
+	
+	string nameFile = formatString(getNamePlayer1()) + "_" + formatString(getNamePlayer2()) + ".txt";
+	string addressFile = _getcwd(NULL, 0) + (string)"\\" + nameFile;
+	
+	setMenuSelect(selected, existsFile(addressFile));
+
+	showMainNamePlayer(player1, player2);
+
 		
+	
 
 	while (true) {
 		ShowConsoleCursor(false);
 		setTitle(ColorCode_DarkRed);
-
+		
 		
 		if (_kbhit()) {
 			int key = _getch();
-
+			
 			if (key == '1' || key == '2' || key == '3' || key == '4' || key == '5') {
 				selected = key - 48; 
-				setMenuSelect(selected);
+				if (selected == 2 && !existsFile(addressFile)) {
+					setMenuSelect(selected, false);
+				}
+				else setMenuSelect(selected);
 			}
 			else {
 				//Enter:13 and  Space:32
 				if (key == 13 || key == 32) {
 					// Do something
-
+					
 					switch (selected) {
 						case 1:
 							//New Game
@@ -161,19 +182,22 @@ void mainGame(string player1, string player2) {
 							break;
 						case 2:
 							//Load Game
-
+							clrscr(); ShowConsoleCursor(true);
+							mainPlayGame(nameFile);
 							break;
 						case 3:
 							//Help
+							system("color F0");
 							setMenuSelect(0);  ShowConsoleCursor(true);
 							helpGame();
-							setMenuSelect(3);
+							setMenuSelect(3); showMainNamePlayer(player1, player2);
 							break;
 						case 4:
 							//About
+							system("color F0");
 							setMenuSelect(0);  ShowConsoleCursor(true);
 							aboutGame();
-							setMenuSelect(4);
+							setMenuSelect(4); showMainNamePlayer(player1, player2);
 							break;
 						case 5:
 							//Exit
@@ -186,19 +210,45 @@ void mainGame(string player1, string player2) {
 					if (key == 0 || key == 0xE0) key = _getch();
 
 					if (key == 80) {
-						//UP
+						//DOWN
 						if (selected + 1 > 5) cout << (char)7;
 						else {
-							selected++;
-							setMenuSelect(selected);
+							if (!existsFile(addressFile)) {
+								if (selected + 1 == 2)
+								{
+									selected += 2;
+									setMenuSelect(selected, false);
+								}
+								else {
+									selected++;
+									setMenuSelect(selected, false);
+								}
+							}
+							else {
+								selected++;
+								setMenuSelect(selected);
+							}
 						}
 					}
 					else if (key == 72) {
-						//DOWN
+						//UP
 						if (selected - 1 < 1) cout << (char)7;
 						else {
-							selected--;
-							setMenuSelect(selected);
+							if (!existsFile(addressFile)) {
+								if (selected - 1 == 2)
+								{
+									selected -= 2;
+									setMenuSelect(selected, false);
+								}
+								else {
+									selected--;
+									setMenuSelect(selected, false);
+								}
+							}
+							else {
+								selected--;
+								setMenuSelect(selected);
+							}
 						}
 					} 
 						

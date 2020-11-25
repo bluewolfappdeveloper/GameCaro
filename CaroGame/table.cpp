@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <direct.h> // _getcwd
+
 #include "console.h"
 #include "caroBoardProcess.h"
 
@@ -54,10 +57,6 @@ void initTable() {
 
 }
 
-void loadTable(string path) {
-
-}
-
 void drawTable() {
 	for (int i = 0; i < rowBoard; i++) {
 		for (int j = 0; j < columnBoard; j++)
@@ -91,15 +90,18 @@ bool checkInTableByPos(int row, int column, char k) {
 
 void checkInTableByIndex(int row, int column, char k, int colorCode) {
 	boardMatrix[row * 2 + 1][column * 4 + 2] = k;
+	int x = getCursorX();
+	int y = getCursorY();
 
 	gotoXY(column * 4 + 2, row * 2 + 1);
 
 	TextColor(colorCode);
 	cout << (char)k;
 	TextColor(default_ColorCode);
+	gotoXY(x, y);
 }
 
-bool insertDataFromMatrix(int row, int column, int value) {
+int insertDataFromMatrix(int row, int column, int value) {
 	return checkValueInBoard((row - 1) / 2, (column - 2) / 4, value);
 }
 

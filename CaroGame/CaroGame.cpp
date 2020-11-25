@@ -14,10 +14,15 @@ int main()
 	SetConsoleCP(437);
 	SetConsoleOutputCP(437);
 
+	/*for (int i = 0; i <= 255; i++) {
+		TextColor(i);
+		cout << "Hello "<< i << endl;
+	}*/
+
 	FixConsoleWindow();
 
-	mainGame("","");
-	//mainLoginGame();
+	//mainGame("","");
+	mainLoginGame();
 	Sleep(10);
 	system("pause");
 

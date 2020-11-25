@@ -56,6 +56,7 @@ void aboutGame() {
 
 			if (key == 27) {
 				clrscr();
+				system("color F0");
 				return;
 			}
 		}

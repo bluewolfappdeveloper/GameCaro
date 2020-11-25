@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <direct.h> // _getcwd
+#include <cstdio>
 
 #include "table.h"
 #include "console.h"
@@ -20,9 +23,9 @@ bool checkWin(int row, int col, int value) {
 		else {
 			if (d >= 5) {
 				for (int j = i - 1; caroBoard[j][col] == value; j--)
-					if (value == 1) checkInTableByIndex(j, col, 'x' , 1); 
-						else checkInTableByIndex(j, col, 'o', 1);
-		
+					if (value == 1) checkInTableByIndex(j, col, 'x', 1);
+					else checkInTableByIndex(j, col, 'o', 1);
+
 				isWin = true;
 			}
 			d = 0;
@@ -40,7 +43,7 @@ bool checkWin(int row, int col, int value) {
 					else checkInTableByIndex(row, j, 'o', 1);
 
 				isWin = true;
-			} 
+			}
 			d = 0;
 		}
 
@@ -52,26 +55,26 @@ bool checkWin(int row, int col, int value) {
 			if ((i - j) == (row - col)) {
 				if (caroBoard[i][j] == value) d++;
 				else {
-					if (d >= 5) { 
+					if (d >= 5) {
 						for (int k = j - 1; caroBoard[(row - col) + k][k] == value; k--)
 							if (value == 1) checkInTableByIndex((row - col) + k, k, 'x', 1);
 							else checkInTableByIndex((row - col) + k, k, 'o', 1);
-						isWin = true; 
+						isWin = true;
 					}
 					d = 0;
 				}
 			}
 
 			if ((i + j) == (row + col)) {
-				if (caroBoard[i][j] == value)  d1++; 
+				if (caroBoard[i][j] == value)  d1++;
 				else {
-					if (d1 >= 5) { 
+					if (d1 >= 5) {
 						for (int k = i - 1; caroBoard[k][(row + col) - k] == value; k--) {
 							if (value == 1) checkInTableByIndex(k, (row + col) - k, 'x', 1);
 							else checkInTableByIndex(k, (row + col) - k, 'o', 1);
 						}
 						isWin = true;
-					} 
+					}
 					d1 = 0;
 				}
 			}
@@ -82,10 +85,73 @@ bool checkWin(int row, int col, int value) {
 	return isWin;
 }
 
-bool checkValueInBoard(int row, int column, int value) {
+int checkValueInBoard(int row, int column, int value) {
 	caroBoard[row][column] = value;
+
+	bool isFull = true;
+	for (int i = 0; i < 14; i++)
+		for (int j = 0; j < 22; j++)
+			if (caroBoard[i][j] == 0) {
+				isFull = false;
+				break;
+			}
+
+	if (isFull) return 0;
+
 	bool ok = checkWin(row, column, value);
 
-	return ok;
+
+	return ok ? 1 : -1;
 }
 
+void saveCaroBoard(string filename, bool isPlayer1) {
+	string add = _getcwd(NULL, 0);
+
+	ofstream boardFile;
+	boardFile.open(add + "\\"+filename);
+	
+	bool ok = boardFile.fail();
+
+	for (int i = 0; i < 14; i++) {
+		for (int j = 0; j < 22; j++) {
+			boardFile << caroBoard[i][j] << " ";
+		}
+		boardFile << endl;
+	}
+
+	boardFile << isPlayer1;
+
+	boardFile.close();
+}
+
+void loadCaroBoard(string fileName, bool &isPlayer1) {
+	string add = _getcwd(NULL, 0);
+
+	ifstream boardFile;
+	boardFile.open(add + "\\" + fileName);
+
+	bool ok = boardFile.fail();
+
+	for (int i = 0; i < 14; i++) {
+		for (int j = 0; j < 22; j++) {
+			boardFile >> caroBoard[i][j];
+			if (caroBoard[i][j] == 1) {
+				checkInTableByIndex(i, j, 'X', ColorCode_DarkBlue);
+			}
+			if (caroBoard[i][j] == 2){
+				checkInTableByIndex(i, j, 'O', ColorCode_DarkRed);
+			}
+		}
+	}
+
+	boardFile >> isPlayer1;
+
+	boardFile.close();
+}
+
+void deleteFile(string fileName) {
+	string add = _getcwd(NULL, 0) + (string)"\\" + fileName;
+
+	const char* c_add = add.c_str();
+	remove(c_add);
+}
