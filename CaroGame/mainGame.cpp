@@ -14,13 +14,13 @@ void C(int t)
 {
 	for (int i = 1; i <= t; i++) cout << (char)219;
 }
+
 void C1(int t)
 {
 	for (int i = 1; i <= t; i++) cout << " ";
 }
 
 void setTitle(int colorCode) {
-
 	//TextColor(colorCode);
 	//int mid = getMaxScreenX/2 - 32;
 	//gotoXY(mid,0); cout << " _______  _______  _______  _______     _______  _______  _______  _______ " << endl;
@@ -34,7 +34,7 @@ void setTitle(int colorCode) {
 	//TextColor(default_ColorCode);
 	
 	TextColor(colorCode);
-	int mid = getMaxScreenX / 2 - 32;
+	int mid = getMaxScreenX / 2 - 30;
 	gotoXY(mid, 1);
 	C1(2), C(6), C1(2), C(5), C1(2), C(6), C1(3), C(6), C1(8), C(6), C1(3), C(5), C1(2), C(3), C1(4), C(3), C1(1), C(7);
 	cout << endl;
@@ -50,14 +50,32 @@ void setTitle(int colorCode) {
 	gotoXY(mid, 5);
 	C1(2), C(6), C1(1), C(2), C1(3), C(2), C1(1), C(2), C1(3), C(2), C1(2), C(6), C1(8), C(6), C1(2), C(2), C1(3), C(2), C1(1), C(2), C1(6), C(2), C1(1), C(7);
 	TextColor(default_ColorCode);
+}
 
+void setTitle(int colorCode1, int colorCode2) {
+	TextColor(colorCode1);
+	int mid = getMaxScreenX / 2 - 30;
+	gotoXY(mid, 1); TextColor(colorCode1);
+	C1(2), C(6), C1(2), C(5), C1(2), C(6), C1(3), C(6), C1(8), TextColor(colorCode2), C(6), C1(3), C(5), C1(2), C(3), C1(4), C(3), C1(1), C(7);
+	cout << endl;
+	gotoXY(mid, 2); TextColor(colorCode1);
+	C(3), C1(6), C(2), C1(3), C(2), C1(1), C(2), C1(3), C(2), C1(1), C(2), C1(4), C(2), C1(6), TextColor(colorCode2), C(2), C1(7), C(2), C1(3), C(2), C1(1), C(4), C1(2), C(4), C1(1), C(2);
+	cout << endl;
+	gotoXY(mid, 3); TextColor(colorCode1);
+	C(3), C1(6), C(7), C1(1), C(6), C1(2), C(2), C1(4), C(2), C1(6), TextColor(colorCode2), C(2), C1(3), C(3), C1(1), C(7), C1(1), C(2), C1(1), C(4), C1(1), C(2), C1(1), C(5);
+	cout << endl;
+	gotoXY(mid, 4); TextColor(colorCode1);
+	C(3), C1(6), C(2), C1(3), C(2), C1(1), C(2), C1(3), C(2), C1(1), C(2), C1(4), C(2), C1(6), TextColor(colorCode2), C(2), C1(4), C(2), C1(1), C(2), C1(3), C(2), C1(1), C(2), C1(2), C(2), C1(2), C(2), C1(1), C(2);
+	cout << endl;
+	gotoXY(mid, 5); TextColor(colorCode1);
+	C1(2), C(6), C1(1), C(2), C1(3), C(2), C1(1), C(2), C1(3), C(2), C1(2), C(6), C1(8), TextColor(colorCode2), C(6), C1(2), C(2), C1(3), C(2), C1(1), C(2), C1(6), C(2), C1(1), C(7);
+	TextColor(default_ColorCode);
 }
 
 inline bool existsFile(const std::string& name) {
 	struct stat buffer;
 	return (stat(name.c_str(), &buffer) == 0);
 }
-
 
 void setMenuSelect(int a, bool isFile = true) {
 	if (a > 5 || a < 0) return;
@@ -131,12 +149,20 @@ void setMenuSelect(int a, bool isFile = true) {
 
 }
 
+string upcaseString(string a) {
+	for (int i = 0; i < a.length(); i++)
+		a[i] = toupper(a[i]);
+	return a;
+}
+
 void showMainNamePlayer(string player1, string player2) {
 	if (!player1.empty() && !player2.empty()) {
-		int col = (getMaxScreenX / 2) - player1.length() + 4;// -((player1.length() + player2.length() + 4)) / 2 + 5;
+		int col = (getMaxScreenX / 2) - player1.length() + 1;// -((player1.length() + player2.length() + 4)) / 2 + 5;
 
-		gotoXY(col, 11); TextColor(228);
-		cout << player1 << " vs " << player2 << endl;
+		gotoXY(col, 11); 
+		TextColor(225); cout << "  " << upcaseString(player1) << " ";
+		TextColor(237); cout << " vs "; 
+		TextColor(228); cout <<" " << upcaseString(player2) << "  " << endl;
 		TextColor(default_ColorCode);
 	}
 }
@@ -151,13 +177,11 @@ void mainGame(string player1, string player2) {
 
 	showMainNamePlayer(player1, player2);
 
-		
-	
 
 	while (true) {
 		ShowConsoleCursor(false);
-		setTitle(ColorCode_DarkRed);
-		
+
+		setTitle(ColorCode_DarkBlue, ColorCode_DarkRed);
 		
 		if (_kbhit()) {
 			int key = _getch();
@@ -190,18 +214,21 @@ void mainGame(string player1, string player2) {
 							system("color F0");
 							setMenuSelect(0);  ShowConsoleCursor(true);
 							helpGame();
-							setMenuSelect(3); showMainNamePlayer(player1, player2);
+							setMenuSelect(3 , existsFile(addressFile)); showMainNamePlayer(player1, player2);
 							break;
 						case 4:
 							//About
 							system("color F0");
 							setMenuSelect(0);  ShowConsoleCursor(true);
 							aboutGame();
-							setMenuSelect(4); showMainNamePlayer(player1, player2);
+							setMenuSelect(4, existsFile(addressFile)); showMainNamePlayer(player1, player2);
 							break;
 						case 5:
 							//Exit
-
+							system("color F0");
+							setMenuSelect(0);  ShowConsoleCursor(true);
+							clrscr();
+							exit(0);
 							break;
 					}
 
@@ -211,7 +238,10 @@ void mainGame(string player1, string player2) {
 
 					if (key == 80) {
 						//DOWN
-						if (selected + 1 > 5) cout << (char)7;
+						if (selected + 1 > 5) {
+							selected = 1;
+							setMenuSelect(selected, false);
+						}
 						else {
 							if (!existsFile(addressFile)) {
 								if (selected + 1 == 2)
@@ -232,7 +262,10 @@ void mainGame(string player1, string player2) {
 					}
 					else if (key == 72) {
 						//UP
-						if (selected - 1 < 1) cout << (char)7;
+						if (selected - 1 < 1) {
+							selected = 5;
+							setMenuSelect(selected, false);
+						}
 						else {
 							if (!existsFile(addressFile)) {
 								if (selected - 1 == 2)

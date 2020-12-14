@@ -115,6 +115,7 @@ void drawInfoTable(int colorCode, bool isWinning) {
 	cout << char(200);
 	gotoXY(136, 8);
 	cout << char(188);
+
 	// ve 2 cai bang duoi
 	for (int i = 93; i <= 111; ++i) {
 		gotoXY(i, 14);
@@ -130,6 +131,9 @@ void drawInfoTable(int colorCode, bool isWinning) {
 		gotoXY(i + 23, 20);
 		cout << char(205);
 	}
+
+	
+
 	for (int i = 14; i <= 20; ++i) {
 		gotoXY(93, i);
 		cout << char(186);
@@ -140,6 +144,7 @@ void drawInfoTable(int colorCode, bool isWinning) {
 		gotoXY(111 + 23, i);
 		cout << char(186);
 	}
+	//xet 4 goc
 	gotoXY(93, 14);
 	cout << char(201);
 	gotoXY(111, 14);
@@ -156,6 +161,17 @@ void drawInfoTable(int colorCode, bool isWinning) {
 	cout << char(200);
 	gotoXY(111 + 23, 20);
 	cout << char(188);
+
+	gotoXY(93, 16);
+	cout << char(204);
+	gotoXY(93 + 23, 16);
+	cout << char(204);
+
+	gotoXY(88 + 23, 16);
+	cout << char(185);
+	gotoXY(111+23, 16);
+	cout << char(185);
+
 	// ve chu CARO
 	TextColor(ColorCode_DarkGreen);
 	if (isWinning) {
@@ -251,14 +267,19 @@ void infoStateWin(bool isPlayer1) {
 	if (!isPlayer1) drawInfoTable(ColorCode_DarkRed, true);
 	else drawInfoTable(ColorCode_DarkBlue, true);
 
-	gotoXY(100, 7);
-	if (isPlayer1) cout << getNamePlayer1() << " WINS";
-	else cout << getNamePlayer2() << " WINS";
+	
+	if (isPlayer1) {
+		gotoXY(90 + 23 - (getNamePlayer2().length() + 5) / 2, 7);
+		cout << getNamePlayer1() << " WINS";
+	}
+	else { 
+		gotoXY(90 + 23 - (getNamePlayer2().length() + 5) / 2, 7);
+		cout << getNamePlayer2() << " WINS";
+	}
 }
 
-void infoStateDraw(bool isPlayer1) {
-	
-	gotoXY(100, 7);
+void infoStateDraw() {
+	gotoXY(90 + 23 - 2, 7);
 	cout << "DRAW";
 }
 

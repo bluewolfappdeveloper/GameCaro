@@ -23,8 +23,8 @@ bool checkWin(int row, int col, int value) {
 		else {
 			if (d >= 5) {
 				for (int j = i - 1; caroBoard[j][col] == value; j--)
-					if (value == 1) checkInTableByIndex(j, col, 'x', 1);
-					else checkInTableByIndex(j, col, 'o', 1);
+					if (value == 1) checkInTableByIndex(j, col, 'x', 30);//30 Yellow 31 White
+					else checkInTableByIndex(j, col, 'o', 78);//78 Yellow 79 White
 
 				isWin = true;
 			}
@@ -39,8 +39,8 @@ bool checkWin(int row, int col, int value) {
 			if (d >= 5) {
 
 				for (int j = i - 1; caroBoard[row][j] == value; j--)
-					if (value == 1) checkInTableByIndex(row, j, 'x', 1);
-					else checkInTableByIndex(row, j, 'o', 1);
+					if (value == 1) checkInTableByIndex(row, j, 'x', 30);
+					else checkInTableByIndex(row, j, 'o', 78);
 
 				isWin = true;
 			}
@@ -57,8 +57,8 @@ bool checkWin(int row, int col, int value) {
 				else {
 					if (d >= 5) {
 						for (int k = j - 1; caroBoard[(row - col) + k][k] == value; k--)
-							if (value == 1) checkInTableByIndex((row - col) + k, k, 'x', 1);
-							else checkInTableByIndex((row - col) + k, k, 'o', 1);
+							if (value == 1) checkInTableByIndex((row - col) + k, k, 'x', 30);
+							else checkInTableByIndex((row - col) + k, k, 'o', 78);
 						isWin = true;
 					}
 					d = 0;
@@ -70,8 +70,8 @@ bool checkWin(int row, int col, int value) {
 				else {
 					if (d1 >= 5) {
 						for (int k = i - 1; caroBoard[k][(row + col) - k] == value; k--) {
-							if (value == 1) checkInTableByIndex(k, (row + col) - k, 'x', 1);
-							else checkInTableByIndex(k, (row + col) - k, 'o', 1);
+							if (value == 1) checkInTableByIndex(k, (row + col) - k, 'x', 30);
+							else checkInTableByIndex(k, (row + col) - k, 'o', 78);
 						}
 						isWin = true;
 					}

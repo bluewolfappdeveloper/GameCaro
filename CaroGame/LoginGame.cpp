@@ -2,11 +2,12 @@
 #include <string>
 #include <fstream>
 #include <direct.h> // _getcwd
+#include <conio.h>
 
 #include "console.h"
 #include "form.h"
 #include "mainGame.h"
-#include <conio.h>
+
 
 //Max length Name 15
 
@@ -23,7 +24,36 @@ struct UserGame {
 UserGame users[10000]; int index = 0;
 UserGame player1, player2;
 
-void setMenuUserSelect(int a) {
+#pragma region Xu Ly Chuoi
+string stringToASCII(string a) {
+	string result = "";
+	for (int i = 0; i < a.length(); i++) {
+		result += to_string((int)a[i]);
+	}
+	return result;
+}
+
+string formatString(string a) {
+	for (int i = 0; i < a.length(); i++) {
+		if (a[i] == ' ') a[i] = '@';
+	}
+
+	return a;
+}
+
+string formatStringSpace(string a) {
+	for (int i = 0; i < a.length(); i++) {
+		if (a[i] == '@') a[i] = ' ';
+	}
+
+	return a;
+}
+
+#pragma endregion 
+
+#pragma region Xu ly lua chon
+
+void setMenuUserSelect(int a, bool isUser2 = false) {
 	if (a > 3 || a < 0) return;
 
 	int col = getMaxScreenX / 2, row = 15;
@@ -35,15 +65,15 @@ void setMenuUserSelect(int a) {
 		for (int j = 0; j <= 30; j++) cout << " ";
 	}
 
+	if (a == 0) return;
 
-	if (a == 0) {
-		return;
-	}
-
+	int colorSelect = -1;
+	if (isUser2) colorSelect = 79; else colorSelect = 31;
 
 	gotoXY(col, ++row);
+
 	if (a == 1) {
-		TextColor(31);
+		TextColor(colorSelect);
 		cout << ">> " << "PLAY AS GUEST" << " <<";
 		TextColor(default_ColorCode);
 	}
@@ -53,9 +83,8 @@ void setMenuUserSelect(int a) {
 
 	gotoXY(col, ++row);
 
-	
 	if (a == 2) {
-		if (index == 0) TextColor(248); else  TextColor(31);
+		if (index == 0) TextColor(248); else  TextColor(colorSelect);
 		cout << ">> " << "SIGN IN YOUR ACCOUNT" << " <<";
 		TextColor(default_ColorCode);
 	}
@@ -69,7 +98,7 @@ void setMenuUserSelect(int a) {
 
 	gotoXY(col, ++row);
 	if (a == 3) {
-		TextColor(31);
+		TextColor(colorSelect);
 		cout << ">> " << "CREATE YOUR ACCOUNT" << " <<";
 		TextColor(default_ColorCode);
 	}
@@ -77,21 +106,23 @@ void setMenuUserSelect(int a) {
 
 }
 
-int getMenuUserSelect() {
+int getMenuUserSelect(bool isUser2=false) {
 	int selected = 1;
-	setMenuUserSelect(selected); ShowConsoleCursor(false);
+	setMenuUserSelect(selected, isUser2);
+	ShowConsoleCursor(false);
+
 	while (true) {
 		// menu lua chon khi thang
 		if (_kbhit()) {
 			int key = _getch();
 
 			if (key == '1' || key == '2' || key == '3') {
-				
+
 				if (key - 48 == 2 && index == 0) {}
 				else {
 					selected = key - 48;
-					setMenuUserSelect(selected);
-				} 
+					setMenuUserSelect(selected, isUser2);
+				}
 			}
 			else {
 				//Enter:13 and  Space:32
@@ -105,22 +136,16 @@ int getMenuUserSelect() {
 
 					if (key == 80) {
 						//DOWN
-						if (selected + 1 > 3) cout << (char)7;
-						else {
-							if (selected + 1 == 2 && index == 0) selected+=2;
-							else selected++;
-							
-							setMenuUserSelect(selected);
-						}
+						if (selected + 1 == 2 && index == 0) selected += 2;
+						else selected++;
+						setMenuUserSelect(selected, isUser2);
+
 					}
 					else if (key == 72) {
 						//UP
-						if (selected - 1 < 1) cout << (char)7;
-						else {
-								if (selected - 1 == 2 && index == 0) selected -= 2;
-								else selected--;
-								setMenuUserSelect(selected);
-						}
+						if (selected - 1 == 2 && index == 0) selected -= 2;
+						else selected--;
+						setMenuUserSelect(selected, isUser2);
 					}
 
 				}
@@ -132,30 +157,105 @@ int getMenuUserSelect() {
 	}
 }
 
-string stringToASCII(string a) {
-	string result = "";
-	for (int i = 0; i < a.length(); i++) {
-		result += to_string((int)a[i]);
+void inputUser(UserGame& userGame, bool isPlayer2 = false, string namePlayer1 = "") {
+	clrscr();
+
+
+	bool isSelect = false;
+	while (!isSelect) {
+		if (!isPlayer2) setTitle(ColorCode_DarkBlue);
+		else setTitle(ColorCode_DarkRed);
+
+		int selected = getMenuUserSelect(isPlayer2);
+		if (selected == 1) {
+			// Playing with Guest
+			return;
+		}
+		else
+		{
+			bool ok = false;
+			int x = 50, y = 15;
+			string user;
+
+			clrscr();
+			if (!isPlayer2) setTitle(ColorCode_DarkBlue);
+			else setTitle(ColorCode_DarkRed);
+
+			while (!ok) {
+				ShowConsoleCursor(true);
+				gotoXY(x, y);
+
+				cout << "Nhap tai khoan cua ban: ";
+				getline(cin, user);
+
+				string temp = user;
+				for (int i = 0; i < user.length(); i++) {
+					temp[i] = toupper(user[i]);
+				}
+
+				if (temp == "BACK") {
+					clrscr();
+					break;
+				}
+
+				int d = user.find('.');
+				bool ok = (namePlayer1.empty() == false && user == namePlayer1);
+
+				if (user.length() > 15 || user.length() == 0 || d > 0 || ok) {
+					gotoXY(x, y + 1);
+					cout << "Sai dinh dang. Vui long nhap lai tai khoan cua ban." << endl;
+					Sleep(300);
+					clrscr();
+					if (!isPlayer2) setTitle(ColorCode_DarkBlue);
+					else setTitle(ColorCode_DarkRed);
+					gotoXY(x, y);
+				}
+				else {
+					bool isUser = false; int i;
+					for (i = 1; i <= index; i++) {
+						if (user == users[i].Name) {
+							isUser = true;
+							break;
+						}
+					}
+
+					if (selected == 2) {
+						if (isUser) { userGame = users[i];  return; }
+						else {
+							gotoXY(x, y + 1);
+							cout << "Khong tim thay tai khoan cua ban. Vui long nhap lai tai khoan cua ban. " << endl;
+							Sleep(600);
+							clrscr();
+							if (!isPlayer2) setTitle(ColorCode_DarkBlue);
+							else setTitle(ColorCode_DarkRed);
+							gotoXY(x, y);
+						}
+					}
+					else {
+						if (!isUser) {
+							userGame.Name = user;
+							userGame.Pos = -1;
+							return;
+						}
+						else {
+							gotoXY(x, y + 1);
+							cout << "Khong tim thay tai khoan cua ban. Vui long nhap lai tai khoan cua ban. " << endl;
+							Sleep(600);
+							clrscr();
+							if (!isPlayer2) setTitle(ColorCode_DarkBlue);
+							else setTitle(ColorCode_DarkRed);
+							gotoXY(x, y);
+						}
+					}
+				}
+			}
+		}
 	}
-	return result;
 }
 
-string formatString(string a) {
-	for (int i = 0; i < a.length(); i++) {
-		if (a[i] == ' ') a[i] = '.';
-	}
-	
-	return a;
-}
+#pragma endregion 
 
-string formatStringSpace(string a) {
-	for (int i = 0; i < a.length(); i++) {
-		if (a[i] == '.') a[i] = ' ';
-	}
-
-	return a;
-}
-
+#pragma region Load And Save To File
 void loadUserFromFile() {
 	string add = _getcwd(NULL, 0);
 	
@@ -206,107 +306,7 @@ void SaveUserToFile() {
 
 
 }
-
-void inputUser(UserGame &userGame, string namePlayer1) {
-	clrscr();
-	
-
-	bool isSelect = false;
-	while (!isSelect) {
-		if (namePlayer1.empty()) setTitle(ColorCode_DarkBlue);
-		else setTitle(ColorCode_DarkRed);
-
-		int selected = getMenuUserSelect();
-		if (selected == 1) {
-			// Playing with Guest
-			return;
-		}
-		else
-		{
-			bool ok = false;
-			int x = 50, y = 15;
-			string user;
-
-			clrscr();
-			if (namePlayer1.empty()) setTitle(ColorCode_DarkBlue);
-			else setTitle(ColorCode_DarkRed);
-
-			while (!ok) {
-				ShowConsoleCursor(true);
-				gotoXY(x, y);
-
-				cout << "Nhap tai khoan cua ban: ";
-				getline(cin, user);
-				
-				string temp = user;
-				for (int i = 0; i < user.length(); i++) {
-					temp[i] = toupper(user[i]);
-				}
-
-				if (temp == "BACK") {
-					clrscr();
-					break;
-				}
-
-				int d = user.find('.');
-				bool ok = (namePlayer1.empty() == false && user == namePlayer1);
-
-				if (user.length() > 15 || user.length() == 0 || d > 0 || ok) {
-					gotoXY(x, y + 1);
-					cout << "Sai dinh dang. Vui long nhap lai tai khoan cua ban." << endl;
-					Sleep(300);
-					clrscr();
-					if (namePlayer1.empty()) setTitle(ColorCode_DarkBlue);
-					else setTitle(ColorCode_DarkRed);
-					gotoXY(x, y);
-				}
-				else {
-					bool isUser = false; int i;
-					for (i = 1; i <= index; i++) {
-						if (user == users[i].Name) {
-							isUser = true;
-							break;
-						}
-					}
-
-					if (selected == 2) {
-						if (isUser) { userGame = users[i];  return; }
-						else {
-							gotoXY(x, y + 1);
-							cout << "Khong tim thay tai khoan cua ban. Vui long nhap lai tai khoan cua ban. " << endl;
-							Sleep(600);
-							clrscr();
-							if (namePlayer1.empty()) setTitle(ColorCode_DarkBlue);
-							else setTitle(ColorCode_DarkRed);
-							gotoXY(x, y);
-						}
-					}
-					else {
-						if (!isUser) {
-							userGame.Name = user;
-							userGame.Pos = -1;
-							return;
-						}
-						else {
-							gotoXY(x, y + 1);
-							cout << "Khong tim thay tai khoan cua ban. Vui long nhap lai tai khoan cua ban. " << endl;
-							Sleep(600);
-							clrscr();
-							if (namePlayer1.empty()) setTitle(ColorCode_DarkBlue);
-							else setTitle(ColorCode_DarkRed);
-							gotoXY(x, y);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	
-
-	
-
-}
+#pragma endregion
 
 void mainLoginGame() {
 	loadUserFromFile();
@@ -323,8 +323,8 @@ void mainLoginGame() {
 	player2.Lose = 0;
 	player2.Pos = -2;
 
-	inputUser(player1, "");
-	inputUser(player2, player1.Name);
+	inputUser(player1);
+	inputUser(player2, true, player1.Name);
 
 	if (player1.Pos == -1) {
 		index++;
@@ -352,6 +352,7 @@ void mainLoginGame() {
 	mainGame(player1.Name, player2.Name);
 }
 
+#pragma region Get Info Player
 string getNamePlayer1() {
 	return player1.Name;
 }
@@ -413,3 +414,4 @@ void setLosePlayer2() {
 	player2.Lose++;
 	if (player2.Pos > -1) users[player2.Pos].Lose++;
 }
+#pragma endregion 

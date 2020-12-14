@@ -21,7 +21,6 @@ int main()
 
 	FixConsoleWindow();
 
-	//mainGame("","");
 	mainLoginGame();
 	Sleep(10);
 	system("pause");
