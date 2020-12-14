@@ -1,10 +1,11 @@
 #include <iostream>
 #include <conio.h>
+#include <iomanip>
+
 #include "console.h"
-#include "table.h"
-#include "caroBoardProcess.h"
-#include "console.h"
+
 using namespace std;
+
 void helpGame() {
 	clrscr();
 	for (int i = 4; i <= 25; i++) {
@@ -41,9 +42,9 @@ void helpGame() {
 	Sleep(25);
 	gotoXY(89, 6);
 	cout << (char)180;
-	gotoXY(89, 6);
-	cout << (char)217;
+
 	for (int i = 4; i <= 24; i++) {
+		if (i == 6) continue;
 		gotoXY(89, i);
 		cout << (char)179;
 		Sleep(10);
