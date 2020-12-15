@@ -1,8 +1,13 @@
+#ifndef FORM_H_
+#define FORM_H_
+
 #include <string>
 
-using namespace std;
+#include "console.h"
+#include "loginGame.h"
+#include "mainGame.h"
 
-#ifndef Form_H_
+using namespace std;
 
 void mainLoginGame();
 void mainGame(string player1, string player2);
@@ -10,7 +15,4 @@ void mainPlayGame(string path);
 void helpGame();
 void aboutGame();
 void SaveUserToFile();
-
-
-
-#endif // !Form_H_
+#endif // !FORM_H_

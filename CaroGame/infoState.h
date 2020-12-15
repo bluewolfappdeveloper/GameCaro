@@ -1,6 +1,7 @@
-#ifndef infoState
+#ifndef INFOSTATE_H_
+#define INFOSTATE_H_
 
 void mainInfoState(bool isPlayer1, int isWinning);
 void drawInfoTable(int colorCode, bool IsWinning);
 
-#endif // !infoState
+#endif // !INFOSTATE_H_

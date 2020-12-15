@@ -1,12 +1,11 @@
 #include <iostream>
 #include <conio.h>
 
-#include "console.h"
-#include "loginMain.h"
 #include "form.h"
 #include "table.h"
-#include "caroBoardProcess.h"
 #include "infoState.h"
+#include "caroBoardProcess.h"
+
 
 using namespace std;
 

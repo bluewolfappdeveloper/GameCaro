@@ -6,12 +6,9 @@
 
 #include "console.h"
 #include "form.h"
-#include "mainGame.h"
 
 
 //Max length Name 15
-
-using namespace std;
 
 struct UserGame {
 	string Name;
@@ -198,7 +195,7 @@ void inputUser(UserGame& userGame, bool isPlayer2 = false, string namePlayer1 = 
 					break;
 				}
 
-				int d = user.find('.');
+				int d = (int)user.find('.');
 				bool ok = (namePlayer1.empty() == false && user == namePlayer1);
 
 				if (user.length() > 15 || user.length() == 0 || d > 0 || ok) {
@@ -257,7 +254,7 @@ void inputUser(UserGame& userGame, bool isPlayer2 = false, string namePlayer1 = 
 
 #pragma region Load And Save To File
 void loadUserFromFile() {
-	string add = _getcwd(NULL, 0);
+	string add = (string)_getcwd(NULL, 0);
 	
 	ifstream userFileInput;
 	
@@ -291,7 +288,7 @@ void loadUserFromFile() {
 }
 
 void SaveUserToFile() {
-	string add = _getcwd(NULL, 0);
+	string add = (string)_getcwd(NULL, 0);
 	ofstream userFile;
 	userFile.open(add + "\\userGame.txt");
 

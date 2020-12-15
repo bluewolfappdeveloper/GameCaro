@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\data">
-      <UniqueIdentifier>{ab83c9cc-a78d-4890-bb7a-0c27b7525326}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\lib">
       <UniqueIdentifier>{f3483110-950a-4b29-a981-b4416d10b978}</UniqueIdentifier>
     </Filter>
@@ -63,26 +60,23 @@
     <ClCompile Include="caroBoardProcess.cpp">
       <Filter>Header Files\form\playGame\process</Filter>
     </ClCompile>
-    <ClCompile Include="form.cpp">
-      <Filter>Header Files\form</Filter>
-    </ClCompile>
     <ClCompile Include="playGame.cpp">
       <Filter>Header Files\form\playGame</Filter>
     </ClCompile>
     <ClCompile Include="mainGame.cpp">
       <Filter>Header Files\form\mainGame</Filter>
     </ClCompile>
-    <ClCompile Include="LoginGame.cpp">
-      <Filter>Header Files\form\loginGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Help.cpp">
-      <Filter>Header Files\form\help</Filter>
-    </ClCompile>
     <ClCompile Include="about.cpp">
       <Filter>Header Files\form\about</Filter>
     </ClCompile>
     <ClCompile Include="infoState.cpp">
       <Filter>Header Files\form\playGame\drawInfoState</Filter>
+    </ClCompile>
+    <ClCompile Include="help.cpp">
+      <Filter>Header Files\form\help</Filter>
+    </ClCompile>
+    <ClCompile Include="loginGame.cpp">
+      <Filter>Header Files\form\loginGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,23 +92,14 @@
     <ClInclude Include="form.h">
       <Filter>Header Files\form</Filter>
     </ClInclude>
-    <ClInclude Include="playGame.h">
-      <Filter>Header Files\form\playGame</Filter>
-    </ClInclude>
     <ClInclude Include="mainGame.h">
       <Filter>Header Files\form\mainGame</Filter>
     </ClInclude>
-    <ClInclude Include="loginMain.h">
-      <Filter>Header Files\form\loginGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Help.h">
-      <Filter>Header Files\form\help</Filter>
-    </ClInclude>
-    <ClInclude Include="about.h">
-      <Filter>Header Files\form\about</Filter>
-    </ClInclude>
     <ClInclude Include="infoState.h">
       <Filter>Header Files\form\playGame\drawInfoState</Filter>
+    </ClInclude>
+    <ClInclude Include="loginGame.h">
+      <Filter>Header Files\form\loginGame</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

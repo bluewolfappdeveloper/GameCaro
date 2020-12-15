@@ -155,23 +155,19 @@
     <ClCompile Include="caroBoardProcess.cpp" />
     <ClCompile Include="CaroGame.cpp" />
     <ClCompile Include="console.cpp" />
-    <ClCompile Include="Help.cpp" />
+    <ClCompile Include="help.cpp" />
     <ClCompile Include="infoState.cpp" />
-    <ClCompile Include="LoginGame.cpp" />
+    <ClCompile Include="loginGame.cpp" />
     <ClCompile Include="mainGame.cpp" />
     <ClCompile Include="playGame.cpp" />
     <ClCompile Include="table.cpp" />
-    <ClCompile Include="form.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="about.h" />
     <ClInclude Include="caroBoardProcess.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="Help.h" />
     <ClInclude Include="infoState.h" />
-    <ClInclude Include="loginMain.h" />
+    <ClInclude Include="loginGame.h" />
     <ClInclude Include="mainGame.h" />
-    <ClInclude Include="playGame.h" />
     <ClInclude Include="table.h" />
     <ClInclude Include="form.h" />
   </ItemGroup>

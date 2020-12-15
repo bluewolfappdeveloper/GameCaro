@@ -3,7 +3,7 @@
 
 
 #include "console.h"
-#include "loginMain.h"
+#include "loginGame.h"
 
 using namespace std;
 

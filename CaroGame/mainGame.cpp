@@ -5,7 +5,7 @@
 #include <direct.h> // _getcwd
 
 #include "console.h"
-#include "loginMain.h"
+#include "loginGame.h"
 #include "form.h"
 
 using namespace std;

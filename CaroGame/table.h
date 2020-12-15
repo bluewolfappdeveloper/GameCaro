@@ -1,8 +1,9 @@
+#ifndef TABLE_H_
+#define TABLE_H_
+
 #include <string.h>
 
 using namespace std;
-
-#ifndef table_H_
 
 enum Direction { UP, DOWN, LEFT, RIGHT };
 
@@ -16,4 +17,4 @@ int insertDataFromMatrix(int row, int column, int value);
 void moveCursorPosition(int row, int column);
 void moveCursorPosition(int row, int column, Direction direct);
 
-#endif // !table_H_
+#endif // !TABLE_H_

@@ -1,18 +1,10 @@
-#ifndef LOGINMAIN_H_
-#define LOGINMAIN_H_
-
+#ifndef LOGINGAME_H_
+#define LOGINGAME_H_
 #include <string>
-#include "data.h"
-
 using namespace std;
-
 
 string formatString(string a);
 
-UserGame getInfoPlayer1();
-UserGame getInfoPlayer2();
-
-/*
 string getNamePlayer1();
 string getNamePlayer2();
 
@@ -33,5 +25,5 @@ void setDrawPlayer2();
 
 void setLosePlayer1();
 void setLosePlayer2();
-*/
-#endif // !LOGINMAIN_H_
+
+#endif // !LOGINGAME_H_

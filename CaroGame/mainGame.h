@@ -2,9 +2,10 @@
 
 using namespace std;
 
-#ifndef mainGame
+#ifndef	MAINGAME_H_
+#define MAINGAME_H_
 
 void setTitle(int colorCode);
 
-#endif // !mainGame
+#endif // !MAINGAME_H_
 
