@@ -135,6 +135,7 @@ int getMenuUserSelect(bool isUser2=false) {
 						//DOWN
 						if (selected + 1 == 2 && index == 0) selected += 2;
 						else selected++;
+						if (selected > 3) selected = 1;
 						setMenuUserSelect(selected, isUser2);
 
 					}
@@ -142,6 +143,7 @@ int getMenuUserSelect(bool isUser2=false) {
 						//UP
 						if (selected - 1 == 2 && index == 0) selected -= 2;
 						else selected--;
+						if (selected < 1) selected = 3;
 						setMenuUserSelect(selected, isUser2);
 					}
 
