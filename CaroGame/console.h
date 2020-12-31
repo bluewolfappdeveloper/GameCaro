@@ -1,4 +1,5 @@
 // basic console functions, collected by Nguyen Trung Thanh
+// Edited by Vo Nhat Tan
 // abcxyz tcIT
 
 #ifndef _console_header
@@ -24,12 +25,7 @@
 
 #define default_ColorCode		240
 
-
-#define key_Up		1072
-#define key_Down	1080
-#define key_Left	1075
-#define key_Right	1077
-#define key_none	-1
+#define key_none -1
 
 #define getMaxScreenX 130
 #define getMaxScreenY 29

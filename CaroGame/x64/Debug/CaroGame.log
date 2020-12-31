@@ -1,2 +1,17 @@
-﻿  loginGame.cpp
+﻿  about.cpp
+  caroBoardProcess.cpp
+  CaroGame.cpp
+  console.cpp
+  help.cpp
+  infoState.cpp
+D:\GameCaro\CaroGame\infoState.cpp(272,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\GameCaro\CaroGame\infoState.cpp(276,58): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  loginGame.cpp
+  mainGame.cpp
+D:\GameCaro\CaroGame\mainGame.cpp(160,55): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  playGame.cpp
+  table.cpp
+D:\GameCaro\CaroGame\table.cpp(13,48): warning C4091: 'static ': ignored on left of 'Direction' when no variable is declared
+D:\GameCaro\CaroGame\table.cpp(36,13): warning C4101: 'h': unreferenced local variable
+  Generating Code...
   CaroGame.vcxproj -> D:\GameCaro\x64\Debug\CaroGame.exe
